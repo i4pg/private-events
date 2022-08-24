@@ -6,7 +6,7 @@ A project completed as part of [The Odin Ruby on Rails Learning Track](https://w
 
 ## Live Demo
 
-You can try it out [here](https://gentle-shelf-63524.herokuapp.com/)  
+You can try it out [here](https://pure-peak-66788.herokuapp.com/)  
 **HEADS UP**: Heroku server may need up to 30 sec to fire up a dyno. Be patient! :)  
 
 ## Functionality
