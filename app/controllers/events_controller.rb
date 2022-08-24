@@ -1,6 +1,11 @@
 class EventsController < ApplicationController
   before_action :set_event, only: %i[show edit update destroy]
   before_action :authenticate_user!, except: %i[index show]
+  before_action :authenticate_creator!, only: %i[edit update destroy]
+
+  def authenticate_creator!
+    redirect_to @event, alert: 'Only the creator can edit or cancel this event ' unless @event.creator == current_user
+  end
 
   # GET /events or /events.json
   def index
@@ -8,7 +13,10 @@ class EventsController < ApplicationController
   end
 
   # GET /events/1 or /events/1.json
-  def show; end
+  def show
+    @attendee = current_user
+    @event_attending = EventAttending.new
+  end
 
   # GET /events/new
   def new
@@ -66,6 +74,6 @@ class EventsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def event_params
-    params.require(:event).permit(:title, :body, :date)
+    params.require(:event).permit(:title, :body, :date, :status, :location)
   end
 end

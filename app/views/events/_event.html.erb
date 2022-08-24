@@ -1,17 +1,23 @@
-<div id="<%= dom_id event %>">
-  <p>
-    <strong>Title:</strong>
-    <%= event.title %>
-  </p>
+<div class="card">
+  <div class="card-header">
+    <div class="card-header-title is-centered">
+      <%= event.title %>
+    </div>
+  </div>
 
-  <p>
-    <strong>Body:</strong>
+  <div class="card-content">
     <%= event.body %>
-  </p>
+  </div>
 
-  <p>
-    <strong>Date:</strong>
-    <%= event.date %>
-  </p>
-
+  <div class="card-footer">
+    <div class="card-footer-item">
+      <%= event.date %>
+    </div>
+    <div class="card-footer-item">
+      <%= event.location %>
+    </div>
+    <% if user_signed_in? %>
+      <%= render 'shared/attend_button', event: event %>
+    <% end %>
+  </div>
 </div>

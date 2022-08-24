@@ -1,0 +1,18 @@
+<% if event.attendee_ids.include? current_user.id %>
+  <% unless Event.all.passed.include? (event) %>
+    <div class="card-footer-item">
+      <p class="control">
+        <%= button_to "Leave", destroy_event_attending_path(id: EventAttending.find_by_attended_event_id(event.id)), method: :delete, class: "is-danger button is-outlined is-fullwidth" %>
+      </p>
+    </div>
+  <% end %>
+<% else %>
+  <% unless Event.all.passed.include? (event) %>
+    <div class="card-footer-item">
+      <p class="control">
+        <%= button_to 'Attend', create_event_attending_url(event_attending: { attendee_id: current_user.id,
+          attended_event_id: event.id }, method: :post  ), class: "is-primary button is-outlined is-fullwidth"%>
+      </p>
+    </div>
+  <% end %>
+<% end %>

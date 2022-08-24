@@ -1,0 +1,42 @@
+<div id="<%= dom_id event %>" class="column card">
+  <div class="card-header">
+    <div class="card-header-title is-centered">
+    <%= event.title %>
+    </div>
+  </div>
+  <div class="card-content">
+    <%= event.body %>
+  </div>
+  <div class="card-footer">
+  <div class="card-footer-item">
+    <%= event.date %>
+  </div>
+      </div>
+  </div>
+  <% if user_signed_in? %>
+  <% if current_user.attended_event_ids.include? (event.id) %>
+    <% if Event.all.passed.include? (event) %>
+    <p class="control">
+    <%= button_to "Attended", destroy_event_attending_path(id: EventAttending.find_by_attended_event_id(event.id)), method: :delete, class: "is-danger button is-outlined is-fullwidth", disabled: true %>
+    </p>
+    <% else %>
+    <p class="control">
+  <%= button_to "Leave", destroy_event_attending_path(id: EventAttending.find_by_attended_event_id(event.id)), method: :delete, class: "is-danger button is-outlined is-fullwidth" %>
+    </p>
+    <% end %>
+    <% else %>
+    <% if Event.all.passed.include? (event) %>
+    <p class="control">
+<%= button_to 'Attend', create_event_attending_url(attendee_id: current_user.id,
+                                                   attended_event_id: event.id, method: :post  ), class: "is-primary button is-outlined is-fullwidth", disabled: true %>
+    </p>
+    <% else %>
+          <p class="control">
+<%= button_to 'Attend', create_event_attending_url(attendee_id: current_user.id,
+                                                   attended_event_id: event.id, method: :post  ), class: "is-primary button is-outlined is-fullwidth"%>
+    </p>
+
+    <% end %>
+    <% end %>
+    <% end %>
+</div>

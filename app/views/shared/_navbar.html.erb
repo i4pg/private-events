@@ -1,0 +1,35 @@
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+      <%= link_to image_tag("peace-celebration-event-svgrepo-com.svg"), 'https://github.com/xiyini', class: "navbar-item" %>
+
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+  <div id="navbarBasicExample" class="navbar-menu">
+    <div class="navbar-start">
+      <%= link_to "Home", root_path, class: "navbar-item" %>
+
+        <%= link_to 'Documentation', 'https://www.theodinproject.com/lessons/ruby-on-rails-private-events', class: 'navbar-item' %>
+
+    </div>
+
+    <div class="navbar-end">
+      <div class="navbar-item">
+        <div class="buttons">
+ <% if user_signed_in? %>
+  <%= link_to "New Event", new_event_path,class:"is-link button" %>
+  <%= link_to 'Profile', user_url(id: current_user.id), class: 'button is-primary' %>        
+  <%= button_to('Logout', destroy_user_session_path, method: :delete, class: "button is-light")  %>        
+<% else %>
+  <%= link_to('Login', new_user_session_path ,  class: "button is-light")%>  
+  <%= link_to('Sign Up', new_user_registration_path ,  class: "button is-primary")%>  
+<% end %>   
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>

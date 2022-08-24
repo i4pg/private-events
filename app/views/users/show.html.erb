@@ -1,0 +1,22 @@
+<section class="section">
+  <div class="container content">
+       <h2> Your Up Coming Events</h2>
+
+    <div class="columns is-multiline">
+   <% @user.attended_events.each do |event| %> 
+     <% if event.date > Time.now %>
+<%= render event %>
+     <% end %>
+    <% end %>
+    </div>
+
+       <h2> Your Passed Events</h2>
+    <div class="columns is-multiline">
+   <% @user.attended_events.each do |event| %> 
+     <% if event.date < Time.now %>
+<%= render event %>
+     <% end %>
+     <% end %>
+  </div>
+  </div>
+</section>

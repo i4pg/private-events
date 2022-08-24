@@ -2,8 +2,8 @@
 
 one:
   attendee: one
-  attended_events: one
+  attended_event: one
 
 two:
   attendee: two
-  attended_events: two
+  attended_event: two

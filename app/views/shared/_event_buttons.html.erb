@@ -1,0 +1,13 @@
+<div class="field is-grouped block">
+  <p class="control">
+    <%= button_to "Edit this event", edit_event_path(@event), class: 'button is-link', method: :get %>
+  </p>
+
+  <p class="control">
+  <%= button_to "Destroy this event", @event, method: :delete, class: 'button is-danger' %>
+  </p>
+
+  <p class="control">
+  <%= button_to "Back to events", events_path, class: 'button is-alert', method: :get %>
+  </p>
+</div>

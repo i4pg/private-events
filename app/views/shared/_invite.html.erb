@@ -1,0 +1,19 @@
+<div class="card-footer">
+  <div class="card-footer-item">
+    <%= form_with model: @event_attending do |form| %>
+
+      <%= render 'shared/errors' %>
+
+      <div class="select">
+      <%= form.collection_select :attendee_id, User.order(:username), :id, :username %>
+      </div>
+
+      <%= form.hidden_field :attended_event_id, value: @event.id%>
+
+    <div class="control">
+      <br><%= form.submit 'Invite', class: "button is-warning is-outlined is-fullwidth" %>
+    </div>
+  </div>
+
+    <% end %>
+</div>

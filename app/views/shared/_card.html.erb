@@ -1,0 +1,19 @@
+<div class="card">
+  <div class="card-header">
+   <div class="card-header-title is-centered">
+     Attendee List
+   </div>
+  </div>
+
+  <div class="card-content">
+    <ul>
+    <% @event.attendee.each do |attendee| %> 
+      <li> <%= attendee.username %> </li>
+    <% end %>
+    </ul>
+  </div>
+
+  <% if user_signed_in? && @event.private? && @event.creator_id == current_user.id %>
+    <%= render 'shared/invite' %>
+  <% end %>
+</div>

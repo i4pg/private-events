@@ -10,39 +10,42 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_17_063750) do
-  create_table "event_attendings", force: :cascade do |t|
-    t.integer "attendee_id", null: false
-    t.integer "attended_events_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["attended_events_id"], name: "index_event_attendings_on_attended_events_id"
-    t.index ["attendee_id"], name: "index_event_attendings_on_attendee_id"
+ActiveRecord::Schema[7.0].define(version: 20_220_824_063_009) do
+  create_table 'event_attendings', force: :cascade do |t|
+    t.integer 'attendee_id', null: false
+    t.integer 'attended_event_id', null: false
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.index ['attended_event_id'], name: 'index_event_attendings_on_attended_event_id'
+    t.index ['attendee_id'], name: 'index_event_attendings_on_attendee_id'
   end
 
-  create_table "events", force: :cascade do |t|
-    t.string "title"
-    t.text "body"
-    t.date "date"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "creator_id", null: false
-    t.index ["creator_id"], name: "index_events_on_creator_id"
+  create_table 'events', force: :cascade do |t|
+    t.string 'title'
+    t.text 'body'
+    t.date 'date'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.integer 'creator_id', null: false
+    t.string 'location'
+    t.string 'status'
+    t.index ['creator_id'], name: 'index_events_on_creator_id'
   end
 
-  create_table "users", force: :cascade do |t|
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  create_table 'users', force: :cascade do |t|
+    t.string 'email', default: '', null: false
+    t.string 'encrypted_password', default: '', null: false
+    t.string 'reset_password_token'
+    t.datetime 'reset_password_sent_at'
+    t.datetime 'remember_created_at'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.string 'username'
+    t.index ['email'], name: 'index_users_on_email', unique: true
+    t.index ['reset_password_token'], name: 'index_users_on_reset_password_token', unique: true
   end
 
-  add_foreign_key "event_attendings", "events", column: "attendee_id"
-  add_foreign_key "event_attendings", "users", column: "attended_events_id"
-  add_foreign_key "events", "users", column: "creator_id"
+  add_foreign_key 'event_attendings', 'events', column: 'attended_event_id'
+  add_foreign_key 'event_attendings', 'users', column: 'attendee_id'
+  add_foreign_key 'events', 'users', column: 'creator_id'
 end

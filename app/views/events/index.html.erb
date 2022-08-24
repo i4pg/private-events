@@ -1,14 +1,20 @@
-<p style="color: green"><%= notice %></p>
-
-<h1>Events</h1>
-
-<div id="events">
-  <% @events.each do |event| %>
-    <%= render event %>
-    <p>
-      <%= link_to "Show this event", event %>
-    </p>
-  <% end %>
-</div>
-
-<%= link_to "New event", new_event_path %>
+<section class="section">
+  <div class="container content">
+  <h1 class="title is-spaced">Up Coming Events</h1>
+    <div id="events" class="columns is-multiline">
+      <% @events.upcoming.each do |event| %>
+        <div class="column">
+        <%= link_to (render event), event  %>
+        </div>
+      <% end %>
+    </div>
+  <h1  class="title is-spaced">Passed Events</h1>
+    <div id="events" class="columns is-multiline">
+      <% @events.passed.each do |event| %>
+        <div class="column">
+        <%= link_to (render event), event %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>
